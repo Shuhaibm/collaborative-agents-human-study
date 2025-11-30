@@ -54,7 +54,7 @@ def scan_dir(path, pattern):
     {
         "id": "p3",
         "title": "Session 3",
-        "description": "You are designing a small system to help students plan their coursework each semester. Your system must support checking whether a student has completed all prerequisites for a course, where some prerequisites include a minimum completion date."
+        "description": "You are implementing an object-oriented program to help students plan their coursework each semester. Your program must support checking whether a student has completed all prerequisites for a course, where some prerequisites include a minimum completion date."
     }
 ]
 
@@ -332,6 +332,9 @@ def show_study_interface():
             st.caption(f"- {pref}")
         st.divider()
 
+        # Reminder before completing task
+        st.info("⚠️ Before completing: Did you verify that all your preferences were adhered to?")
+        
         # Moves to Survey Page (Doesn't save data yet)
         if st.button("✅ Task Complete", type="primary"):
             st.session_state.page = "survey"
@@ -342,7 +345,7 @@ def show_study_interface():
     
     # Display problem description with proper formatting
     with st.container(border=True):
-        st.markdown("**Task: Please solve the problem below by communicating with the agent. Remember, they do not see this problem description.**")
+        st.markdown("**Task: Please solve the problem below by communicating with the agent. Remember, they do not see this problem description.**\nAvoid copy and pasting, unless you have to (e.g. the problem provides a code snippet or paragraph you need to change).")
         st.markdown(current_problem['description'])
 
     # Display History
@@ -456,6 +459,11 @@ def show_survey_interface():
         q5 = st.text_area(
             "5. Were there any specific moments in this session where the agent's behavior stood out to you?",
             placeholder="Example: 'I was surprised it remembered to use Python instead of C++...'"
+        )
+
+        q6 = st.text_area(
+            "6. Were there any additional preferences that you enforced while solving the problem? How well did the agent adhere to them? Did they remember them from previous sessions?",
+            placeholder="Example: 'I asked the agent to use Python instead of C++...'"
         )
 
         submitted = st.form_submit_button("Submit & Continue")
