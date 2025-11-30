@@ -226,13 +226,12 @@ def show_intro_page():
     In this study, you will complete **4 different study conditions**, each consisting of 3 problem-solving sessions.
     
     ### What to Expect:
-    - **Duration:** Approximately 1.5-2 hours total (all 4 studies)
-    - **Structure:** Each study has 3 sessions with a brief survey after each
-    - **Tasks:** You'll work with an AI agent to solve various problems
-    - **Data:** At the end, you'll download a single file with all your data
-    
+    - **Duration:** Approximately 1.5 hours total (all 4 studies)
+    - **Tasks:** In each session, you will work with an agent to solve a problem. After the session, you will be asked to answer a brief survey about your experience.
+    - **Data:** At the end, you will download a single file with all your data.
+
     ### Instructions:
-    You will be provided with interaction preferences for each study that describe how you should expect the agent to behave. 
+    You will be provided with interaction preferences for each study that describe how you should expect the agent to behave. You are also free to add any additional preferences of your own that help you with solving the problem.
     For each session:
     - You will be provided with a problem
     - Your goal is to have the agent help you solve the problem
