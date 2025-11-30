@@ -22,7 +22,7 @@ CODING_PREFERENCES = [
     "When an agent is writing code or explaining a programming concept, you prefer responses that begin with pseudocode (e.g., high-level idea, design rationale) before showing going into implementation details.",
     "If multiple high-level, valid solutions exist for a coding problem (recursion vs. dynamic programming), then you would prefer the agent to present the different approaches and their tradeoffs.",
     "If the code solution requires extensive use of an imported library, the agent should always provide an explanation detailing why the dependency is helpful.",
-    "When writing variable names, function names, or method names, you prefer that the agent consistently use camelCase rather than other naming conventions."
+    "When writing variable names, function names, or method names, you prefer that the agent consistently use snake_case rather than other naming conventions."
 ]
 
 CODING_PROBLEMS = [
@@ -36,13 +36,13 @@ The function below is intended to walk a directory tree and collect files whose 
 ```python
 import os
 
-def scanGlob(path, pattern):
-    results = []
+def scan_dir(path, pattern):
+    curr_results = []
     for root, dirs, files in os.walk(path):
         for f in files:
             if f.endswith(pattern):
-                results = results.append(os.path.join(root, f))
-    return results
+                curr_results = curr_results.append(os.path.join(root, f))
+    return curr_results
 ```
 """
     },
@@ -236,6 +236,7 @@ def show_intro_page():
     For each session:
     - You will be provided with a problem
     - Your goal is to have the agent help you solve the problem
+    - Avoid copy and pasting, unless you have to (e.g. the problem provides a code snippet or paragraph you need to change)
     - You must ensure the agent adheres to your preferences throughout the session
     - When completed, click "✅ Task Complete" to move to the survey
     """)
@@ -296,7 +297,7 @@ def show_study_intro_page():
             
             kwargs = {
                 "model_name": MODEL_NAME,
-                "user_preferences": user_prefs_text,
+                # "user_preferences": user_prefs_text,
             }
             if API_BASE and API_KEY:
                 kwargs["api_base"] = API_BASE
@@ -398,7 +399,7 @@ def show_survey_interface():
 
         st.divider()
 
-        q2 = st.slider("""2. How well did the agent remember your preferences from previous sessions?
+        q2 = st.slider("""2. How well did the agent remember your preferences from previous sessions? (If this is the first session, select 1)
 
         - 1: Remembered none of my preferences from previous sessions. I had to repeat everything.
 
