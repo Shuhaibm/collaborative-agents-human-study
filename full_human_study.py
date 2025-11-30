@@ -86,28 +86,28 @@ MIXED_PROBLEMS = [
 STUDY_CONDITIONS = {
     "coding_standard_agent": {
         "name": "Coding Study - Version A",
-        "description": "Complete coding tasks with an AI assistant across multiple sessions",
+        "description": "You will be solving debugging, implementation, and object-oriented design problems.",
         "uses_memory": False,
         "preferences": CODING_PREFERENCES,
         "problems": CODING_PROBLEMS
     },
     "coding_collaborative_agent": {
         "name": "Coding Study - Version B",
-        "description": "Complete coding tasks with an AI assistant across multiple sessions",
+        "description": "You will be solving debugging, implementation, and object-oriented design problems.",
         "uses_memory": True,
         "preferences": CODING_PREFERENCES,
         "problems": CODING_PROBLEMS
     },
     "mixed_standard_agent": {
         "name": "Mixed Domains Study - Version A",
-        "description": "Complete diverse problem-solving tasks with an AI assistant across multiple sessions",
+        "description": "You will be solving a writing, math, and coding problems.",
         "uses_memory": False,
         "preferences": CODING_PREFERENCES,
         "problems": MIXED_PROBLEMS
     },
     "mixed_collaborative_agent": {
         "name": "Mixed Domains Study - Version B",
-        "description": "Complete diverse problem-solving tasks with an AI assistant across multiple sessions",
+        "description": "You will be solving a writing, math, and coding problems.",
         "uses_memory": True,
         "preferences": MIXED_PREFERENCES,
         "problems": MIXED_PROBLEMS
