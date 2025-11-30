@@ -272,7 +272,7 @@ def show_study_intro_page():
     # Display preferences in a highlighted container
     with st.container(border=True):
         st.markdown("### 📋 Your Assigned Preferences")
-        st.markdown("For this study, please adopt the following preferences:")
+        st.markdown("For this study, please adopt the following preferences (you will be able to see these throughout the sessions):")
         st.write("")
         
         for i, pref in enumerate(config["preferences"], 1):
