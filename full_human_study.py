@@ -280,6 +280,7 @@ def show_study_intro_page():
             st.markdown(f"**{i}.** {pref}")
     
     st.write("")
+    st.markdown("**Feel free to apply any additional preferences of your own.**")
     st.markdown("**Remember these preferences as you interact with the agent throughout the sessions.**")
     st.write("")
 
