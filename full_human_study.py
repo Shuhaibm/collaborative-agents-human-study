@@ -345,7 +345,7 @@ def show_study_interface():
     
     # Display problem description with proper formatting
     with st.container(border=True):
-        st.markdown("**Task: Please solve the problem below by communicating with the agent. Remember, they do not see this problem description.**\nAvoid copy and pasting, unless you have to (e.g. the problem provides a code snippet or paragraph you need to change).")
+        st.markdown("**Task: Please solve the problem below by communicating with the agent. Remember, they do not see this problem description.** Avoid copy and pasting, unless you have to (e.g. the problem provides a code snippet or paragraph you need to change).")
         st.markdown(current_problem['description'])
 
     # Display History
