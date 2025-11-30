@@ -278,7 +278,7 @@ def show_study_intro_page():
         
         for i, pref in enumerate(config["preferences"], 1):
             st.markdown(f"**{i}.** {pref}")
-        st.markdown(f"Feel free to apply any additional preferences that help you solve the problem.")
+        st.markdown(f"Feel free to apply any additional preferences of your own that help you with solving the problem.")
     
     st.write("")
     st.markdown("**Remember these preferences as you interact with the agent throughout the sessions.**")
