@@ -248,8 +248,6 @@ def show_intro_page():
         Before beginning, please check the box below if you agree to allow us to collect your interaction data and survey responses as part of our research. We will anonymize the data before sharing it publicly.
 
         **Privacy Notice:** To protect your privacy, please do **NOT** reveal any personal identifying information throughout the study.
-        
-        **Compensation:** [Add compensation details here if applicable]
         """)
 
         agreed = st.checkbox("I agree to participate in this research study")
