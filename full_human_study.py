@@ -22,7 +22,7 @@ CODING_PREFERENCES = [
     "When an agent is writing code or explaining a programming concept, you prefer responses that begin with pseudocode (e.g., high-level idea, design rationale) before showing going into implementation details.",
     "If multiple high-level, valid solutions exist for a coding problem (recursion vs. dynamic programming), then you would prefer the agent to present the different approaches and their tradeoffs.",
     "If the code solution requires extensive use of an imported library, the agent should always provide an explanation detailing why the dependency is helpful.",
-    "When writing variable names, function names, or method names, you prefer that the agent consistently use snake_case rather than other naming conventions."
+    "When writing variable names, function names, or method names, you prefer that the agent consistently use camelCase rather than other naming conventions."
 ]
 
 CODING_PROBLEMS = [
