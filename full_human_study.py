@@ -569,19 +569,19 @@ def show_final_download_page():
     """)
     
     # Convert the Python dictionary to a JSON string
-    json_string = json.dumps(st.session_state.study_data, indent=4)
+    json_string = json.dumps(st.session_state.all_study_data, indent=4)
     
     # Create the Download Button
     st.download_button(
         label="📥 Download Study JSON",
         data=json_string,
-        file_name=f"study_data_{st.session_state.study_data['participant_id']}.json",
+        file_name=f"study_data_{st.session_state.all_study_data['participant_id']}.json",
         mime="application/json"
     )
 
     # Optional: Display what's in the file so they trust it
     with st.expander("View Data Preview"):
-        st.json(st.session_state.study_data)
+        st.json(st.session_state.all_study_data)
     
     st.divider()
     
