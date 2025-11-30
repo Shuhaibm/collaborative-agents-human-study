@@ -54,7 +54,7 @@ def scan_dir(path, pattern):
     {
         "id": "p3",
         "title": "Session 3",
-        "description": "You are implementing an object-oriented program to help students plan their coursework each semester. Your program must support checking whether a student has completed all prerequisites for a course, where some prerequisites include a minimum completion date."
+        "description": "You are implementing an object-oriented program to help students plan their coursework each semester. Your program must support checking whether a student has completed all prerequisites for a course, where some prerequisites include a minimum completion date. You should use the `dateutil` library to parse and compare dates."
     }
 ]
 
@@ -274,22 +274,22 @@ def show_study_intro_page():
         st.markdown("### 📋 Your Assigned Preferences")
         st.markdown("For this study, please adopt the following preferences (you will be able to see these throughout the sessions):")
         st.write("")
-        
+
         for i, pref in enumerate(config["preferences"], 1):
             st.markdown(f"**{i}.** {pref}")
         st.markdown(f"Feel free to apply any additional preferences of your own that help you with solving the problem.")
-    
+
     st.write("")
     st.markdown("**Remember these preferences as you interact with the agent throughout the sessions.**")
     st.write("")
 
     col1, col2 = st.columns([1, 1])
-    
+
     with col1:
         if st.button("← Back to Study Selection", type="secondary"):
             st.session_state.page = "study_select"
             st.rerun()
-    
+
     with col2:
         if st.button("Begin Study →", type="primary"):
             # Initialize agent for this study
