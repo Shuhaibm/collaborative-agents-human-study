@@ -103,7 +103,7 @@ STUDY_CONDITIONS = {
         "name": "Mixed Domains Study - Version A",
         "description": "You will be solving a writing, math, and coding problems.",
         "uses_memory": False,
-        "preferences": CODING_PREFERENCES,
+        "preferences": MIXED_PREFERENCES,
         "problems": MIXED_PROBLEMS
     },
     "mixed_collaborative_agent": {
