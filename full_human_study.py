@@ -68,7 +68,8 @@ MIXED_PROBLEMS = [
         "id": "p1",
         "title": "Session 1",
         "description": """Add a plot twist to the paragraph below, but make sure the twist (e.g., character-based, setting-based, or perspective-based) integrates smoothly with the existing setup. The twist should feel motivated rather than sudden or random.
-\“Nora stood waiting at the empty bus stop, the cold wind tugging at her coat as she checked the time again. The streetlamps flickered in uneven intervals, casting long shadows across the pavement. Behind her, the small bakery she had just left was closing for the night, its warm lights dimming one by one. The bus was already ten minutes late, and the neighborhood felt unusually deserted for a Thursday evening.\”"""
+
+“Nora stood waiting at the empty bus stop, the cold wind tugging at her coat as she checked the time again. The streetlamps flickered in uneven intervals, casting long shadows across the pavement. Behind her, the small bakery she had just left was closing for the night, its warm lights dimming one by one. The bus was already ten minutes late, and the neighborhood felt unusually deserted for a Thursday evening.”"""
     },
     {
         "id": "p2",
