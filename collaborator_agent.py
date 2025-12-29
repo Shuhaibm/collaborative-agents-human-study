@@ -16,7 +16,7 @@ class CollaboratorAgent():
         with_proper_scaffolding=False,
         api_base=None,
         api_key=None,
-        num_retries=10
+        num_retries=20
     ):
         self.num_retries = num_retries
         self.model_name = model_name
@@ -25,7 +25,7 @@ class CollaboratorAgent():
         self.with_scaffolding = with_scaffolding
         self.with_proper_scaffolding = with_proper_scaffolding
         self.max_new_tokens = max_new_tokens = 2048
-        self.kwargs = {"temperature": 1.0, "max_tokens": max_new_tokens, "timeout": 2100}
+        self.kwargs = {"temperature": 0.7, "max_tokens": max_new_tokens, "timeout": 2100}
         if api_base and api_key:
             self.kwargs["api_base"] = api_base
             self.kwargs["api_key"] = api_key
@@ -41,7 +41,21 @@ class CollaboratorAgent():
         return "\n".join([f"{message['role'].capitalize()}: {message['content']}" for message in messages])
 
     def completion(self, messages):
-        response = llm_completion(model=self.model_name, messages=messages, num_retries=self.num_retries, **self.kwargs).choices[0].message.content
+        # Validate messages before sending to avoid Together AI input validation errors
+        validated_messages = []
+        for msg in messages:
+            if not msg.get("content") or not str(msg.get("content", "")).strip():
+                print(f"Warning: Skipping empty message with role '{msg.get('role')}'")
+                continue
+            validated_messages.append({
+                "role": msg["role"],
+                "content": str(msg["content"]).strip()
+            })
+        
+        if not validated_messages:
+            raise ValueError("No valid messages to send to the model")
+        
+        response = llm_completion(model=self.model_name, messages=validated_messages, num_retries=self.num_retries, **self.kwargs).choices[0].message.content
         return response
 
     def add_scaffolding_to_conversation(self, messages):
@@ -69,20 +83,27 @@ class CollaboratorAgent():
 
     def generate_collaborator_response(self, conversation):
         conversation = copy.deepcopy(conversation)
-        for _ in range(self.num_retries):
-            if self.with_scaffolding:
-                conversation = self.add_scaffolding_to_conversation(conversation)
+        for attempt in range(self.num_retries):
+            try:
+                if self.with_scaffolding:
+                    conversation = self.add_scaffolding_to_conversation(conversation)
 
-            messages = [{"role": "system", "content": self.system_prompt}] + conversation
+                messages = [{"role": "system", "content": self.system_prompt}] + conversation
 
-            response = self.completion(messages)
+                response = self.completion(messages)
 
-            processed_response = repair_json(response, return_objects=True)
-            missing_keys = [key for key in ["reasoning", "response"] if key not in processed_response]
-            if missing_keys:
-                print(f"Missing keys: {missing_keys}. Messages: {messages}.\n\nResponse: {response}.\n\nProcessed response: {processed_response}")
-                continue
-            return processed_response
+                processed_response = repair_json(response, return_objects=True)
+                missing_keys = [key for key in ["reasoning", "response"] if key not in processed_response]
+                if missing_keys:
+                    print(f"Missing keys: {missing_keys}. Messages: {messages}.\n\nResponse: {response}.\n\nProcessed response: {processed_response}")
+                    continue
+                return processed_response
+            except Exception as e:
+                print(f"Attempt {attempt + 1}/{self.num_retries} failed with error: {e}")
+                # Log message details for debugging
+                print(f"Conversation length: {len(conversation)}, Total chars: {sum(len(str(m.get('content', ''))) for m in conversation)}")
+                if attempt == self.num_retries - 1:
+                    raise  # Re-raise on last attempt
 
         print(f"Failed to generate collaborator response after {self.num_retries} retries")
         return None

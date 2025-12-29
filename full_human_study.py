@@ -364,9 +364,11 @@ def show_study_interface():
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 # Build conversation for agent (include history for context)
-                conversation = [{"role": msg["role"], "content": msg["content"]} 
+                # Filter out messages with empty/whitespace-only content to avoid Together AI validation errors
+                conversation = [{"role": msg["role"], "content": msg["content"].strip()} 
                                for msg in st.session_state.messages 
-                               if "role" in msg and "content" in msg]
+                               if "role" in msg and "content" in msg 
+                               and msg["content"] and msg["content"].strip()]
                 
                 # Get response from agent
                 result = st.session_state.agent.generate_collaborator_response(conversation)
